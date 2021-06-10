@@ -8,14 +8,16 @@ import static vip.floatationdevice.flyingjfr.Main.MAX_Y;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class Flyer extends JFrame
 {
-    Flyer ins=this;
-    private static final long serialVersionUID = 1L;
-    int sizex=100, sizey=100;
-    double x=MAX_X/2-sizex, y=MAX_Y/2-sizey;
-    double addx=1, addy=1;
+    private static final long serialVersionUID = 1L; // what
+    int sizex=100, sizey=100; // Initial window size
+    double x=MAX_X/2-sizex, y=MAX_Y/2-sizey; // Initial window location
+    double addx=1, addy=1; // Base X & Y movement speed
+    double speedx=(new Random().nextDouble()+0)%0.01; // X acceleration
+    double speedy=(new Random().nextDouble()+0)%0.01; // Y acceleration
     
     public void reset()
     {
@@ -27,7 +29,7 @@ public class Flyer extends JFrame
         addy=1;
     }
     
-    Flyer(double sx,double sy)
+    Flyer()
     {
         setSize(sizex,sizey);
         setLocation((int)x,(int)y);
@@ -36,13 +38,13 @@ public class Flyer extends JFrame
         {
             public void actionPerformed(ActionEvent ev)
             {
-                if(x>MAX_X*1.5||y>MAX_Y*1.5||x<MAX_X*-1||y<MAX_Y*-1){reset();}
+                if(x>MAX_X*1.5||y>MAX_Y*1.5||x<MAX_X*-1||y<MAX_Y*-1){reset();} // Reset window location & size if it flew out of the screen
                 x+=addx;y+=addy;
-                addx*=(sx+1);addy*=(sy+1);
+                addx*=(speedx+1);addy*=(speedy+1);
                 setLocation((int)x,(int)y);
             }
         };
-        new Timer(10,taskPerformer).start();
+        new Timer(10,taskPerformer).start(); // Start flying
     }
     
 }

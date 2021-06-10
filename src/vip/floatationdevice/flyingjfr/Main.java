@@ -1,7 +1,6 @@
 package vip.floatationdevice.flyingjfr;
 
 import java.awt.Toolkit;
-import java.util.Random;
 
 public class Main
 {
@@ -16,12 +15,10 @@ public class Main
             {
                 for(int i=1;i!=20;i++)
                 {
-                    double speedx=(new Random().nextDouble()+1.003)%0.005,speedy=(new Random().nextDouble()+1.003)%0.005;
-                    new Flyer(speedx,speedy).setVisible(true);
+                    new Flyer().setVisible(true);
                     try
                     {
                         Thread.sleep(300);
-                        System.gc();
                     }catch(Throwable e){}
                 }
             }
