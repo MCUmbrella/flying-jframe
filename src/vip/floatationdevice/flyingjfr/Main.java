@@ -13,7 +13,7 @@ public class Main
             @Override
             public void start()
             {
-                for(int i=1;i!=20;i++)
+                for(int i=1;i!=30;i++)
                 {
                     new Flyer().setVisible(true);
                     try
