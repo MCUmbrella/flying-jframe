@@ -17,11 +17,13 @@ public class Flyer extends JFrame
     int sizex=100, sizey=100; // Initial window size
     double x=MAX_X/2-sizex, y=MAX_Y/2-sizey; // Initial window location
     double addx=1, addy=1; // Base X & Y movement speed
-    double speedx=new Random().nextDouble()%0.01; // X acceleration
-    double speedy=new Random().nextDouble()%0.01; // Y acceleration
+    static double speedx;// // X acceleration
+    static double speedy;// // Y acceleration
     boolean negx=new Random().nextBoolean(), negy=new Random().nextBoolean(); // Controls movement direction
     public void reset()
     {
+        x=new Random().nextDouble()%0.01;
+        y=new Random().nextDouble()%0.01;
         sizex=100; sizey=100;
         x=MAX_X/2-sizex; y=MAX_Y/2-sizey;
         addx=1; addy=1;
@@ -29,6 +31,7 @@ public class Flyer extends JFrame
     
     Flyer()
     {
+        reset();
         if(negx) {speedx*=-1;addx*=-1;}
         if(negy) {speedy*=-1;addy*=-1;}
         setSize(sizex,sizey);
@@ -41,15 +44,8 @@ public class Flyer extends JFrame
             {
                 if(x>MAX_X*1.5||y>MAX_Y*1.5||x<MAX_X*-1||y<MAX_Y*-1){reset();} // Reset window location & size if it flew out of the screen
                 x+=addx;y+=addy;
-                if(negx)
-                    addx*=(speedx-1);
-                else
-                    addx*=(speedx+1);
-                
-                if(negy)
-                    addy*=(speedy-1);
-                else
-                    addx*=(speedx+1);
+                addx*=(speedx+1);
+                addy*=(speedy+1);
                 setLocation((int)x,(int)y);
             }
         };
