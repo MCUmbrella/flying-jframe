@@ -1,5 +1,6 @@
 package vip.floatationdevice.flyingjfr;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -14,24 +15,24 @@ public class Flyer extends JFrame
 {
     private static final long serialVersionUID = 1L; // what
     int sizex=100, sizey=100; // Initial window size
-    double x=MAX_X/2-sizex, y=MAX_Y/2-sizey; // Initial window location
+    //double x=MAX_X/2-sizex, y=MAX_Y/2-sizey; // Initial window location
+    double x=-sizex, y=-sizey;
     double addx=1, addy=1; // Base X & Y movement speed
-    double speedx=(new Random().nextDouble()+0)%0.01; // X acceleration
-    double speedy=(new Random().nextDouble()+0)%0.01; // Y acceleration
+    double speedx=new Random().nextDouble()%0.01; // X acceleration
+    double speedy=new Random().nextDouble()%0.01; // Y acceleration
     
     public void reset()
     {
-        sizex=100;
-        sizey=100;
-        x=MAX_X/2-sizex;
-        y=MAX_Y/2-sizey;
-        addx=1;
-        addy=1;
+        sizex=100; sizey=100;
+        //x=MAX_X/2-sizex; y=MAX_Y/2-sizey;
+        x=-sizex; y=-sizey;
+        addx=1; addy=1;
     }
     
     Flyer()
     {
         setSize(sizex,sizey);
+        add(new JButton(""+(new Random().nextDouble()+0)%0.01));
         setLocation((int)x,(int)y);
         
         ActionListener taskPerformer=new ActionListener()
