@@ -16,7 +16,7 @@ public class Background extends JFrame
         setSize(MAX_X,MAX_Y);
         setLocation(0,0);
         JPanel j=new JPanel();
-        j.setBackground(Color.black);
+        j.setBackground(Color.BLACK);
         add(j);
     }
 }

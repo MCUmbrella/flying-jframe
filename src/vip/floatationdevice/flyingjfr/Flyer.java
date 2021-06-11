@@ -21,8 +21,7 @@ public class Flyer extends JFrame
     int sizex=124, sizey=104; // Initial window size
     double x=MAX_X/2-sizex, y=MAX_Y/2-sizey; // Initial window location
     double sx=new Random().nextDouble(), sy=new Random().nextDouble(); // Base X & Y movement speed
-    double ax=new Random().nextDouble()%0.01;// // X acceleration
-    double ay=new Random().nextDouble()%0.01;// // Y acceleration
+    double a=new Random().nextDouble()%0.01;// Acceleration
     public void reset()
     {
         //sizex=100; sizey=100;
@@ -45,8 +44,8 @@ public class Flyer extends JFrame
             {
                 if(x>MAX_X*1.5||y>MAX_Y*1.5||x<MAX_X*-0.5||y<MAX_Y*-0.5){reset();} // Reset window location & size if it flew out of the screen
                 x+=sx;y+=sy;
-                sx*=(ax+1);
-                sy*=(ay+1);
+                sx*=(a+1);
+                sy*=(a+1);
                 setLocation((int)x,(int)y);
             }
         };
@@ -66,7 +65,7 @@ public class Flyer extends JFrame
     
     @Override
     public void paint(Graphics g) {
-        g.drawImage(IMG, 0, 0, sizex, sizey, Color.BLACK, this);
+        g.drawImage(IMG[new Random().nextInt(IMG.length)], 0, 0, sizex, sizey, Color.BLACK, this);
     }
     
 }
