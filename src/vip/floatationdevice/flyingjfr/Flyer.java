@@ -1,12 +1,14 @@
 package vip.floatationdevice.flyingjfr;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
 import static vip.floatationdevice.flyingjfr.Main.MAX_X;
 import static vip.floatationdevice.flyingjfr.Main.MAX_Y;
+import static vip.floatationdevice.flyingjfr.Main.IMG;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -16,7 +18,7 @@ import java.util.Random;
 public class Flyer extends JFrame
 {
     private static final long serialVersionUID = 1L; // what
-    int sizex=100, sizey=100; // Initial window size
+    int sizex=124, sizey=104; // Initial window size
     double x=MAX_X/2-sizex, y=MAX_Y/2-sizey; // Initial window location
     double sx=new Random().nextDouble(), sy=new Random().nextDouble(); // Base X & Y movement speed
     double ax=new Random().nextDouble()%0.01;// // X acceleration
@@ -32,11 +34,9 @@ public class Flyer extends JFrame
     
     Flyer()
     {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setUndecorated(true);
         if(new Random().nextBoolean())sx*=-1;if(new Random().nextBoolean())sy*=-1;
         setSize(sizex,sizey);
-        JButton jb=new JButton(""+(new Random().nextDouble()));
-        add(jb);
         setLocation((int)x,(int)y);
         
         ActionListener taskPerformer=new ActionListener()
@@ -50,9 +50,10 @@ public class Flyer extends JFrame
                 setLocation((int)x,(int)y);
             }
         };
-        jb.addKeyListener(KL);
+        addKeyListener(KL);
         new Timer(10,taskPerformer).start(); // Start flying
     }
+    
     final static KeyListener KL=new KeyListener()
     {
         @Override
@@ -62,4 +63,10 @@ public class Flyer extends JFrame
         @Override
         public void keyReleased(KeyEvent e){}
     };
+    
+    @Override
+    public void paint(Graphics g) {
+        g.drawImage(IMG, 0, 0, sizex, sizey, Color.BLACK, this);
+    }
+    
 }
