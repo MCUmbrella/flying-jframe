@@ -55,7 +55,7 @@ public class Flyer extends JFrame
         {
             public void actionPerformed(ActionEvent ev)
             {
-                if(x>MAX_X*1.5||y>MAX_Y*1.5||x<MAX_X*-0.5||y<MAX_Y*-0.5){reset();} // Reset window location & size if it flew out of the screen
+                if(x>MAX_X||y>MAX_Y||x<-sizex||y<-sizey){reset();} // Reset window location & size if it flew out of the screen
                 x+=sx;y+=sy;
                 sx*=(a+1);
                 sy*=(a+1);
