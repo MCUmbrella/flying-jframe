@@ -7,6 +7,7 @@ import static vip.floatationdevice.flyingjfr.Main.MAX_X;
 import static vip.floatationdevice.flyingjfr.Main.MAX_Y;
 
 import java.awt.Color;
+
 public class Background extends JFrame
 {
     private static final long serialVersionUID = 1L;

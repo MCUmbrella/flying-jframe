@@ -5,10 +5,11 @@ import javax.swing.Timer;
 
 import static vip.floatationdevice.flyingjfr.Main.MAX_X;
 import static vip.floatationdevice.flyingjfr.Main.MAX_Y;
-import static vip.floatationdevice.flyingjfr.Main.IMG;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -22,6 +23,18 @@ public class Flyer extends JFrame
     double x=MAX_X/2-sizex, y=MAX_Y/2-sizey; // Initial window location
     double sx=new Random().nextDouble(), sy=new Random().nextDouble(); // Base X & Y movement speed
     double a=new Random().nextDouble()%0.01;// Acceleration
+    
+    Image imgs[]=
+    {
+        Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/ico0.png")),
+        Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/ico1.png")),
+        Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/ico2.png")),
+        Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/ico3.png")),
+        Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/ico4.png")),
+        Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/ico5.png")),
+        Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/ico6.png"))
+    };
+    
     public void reset()
     {
         //sizex=100; sizey=100;
@@ -65,7 +78,7 @@ public class Flyer extends JFrame
     
     @Override
     public void paint(Graphics g) {
-        g.drawImage(IMG[new Random().nextInt(IMG.length)], 0, 0, sizex, sizey, Color.BLACK, this);
+        g.drawImage(imgs[new Random().nextInt(imgs.length)], 0, 0, sizex, sizey, Color.BLACK, this);
     }
     
 }
