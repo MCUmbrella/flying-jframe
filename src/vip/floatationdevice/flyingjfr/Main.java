@@ -9,21 +9,14 @@ public class Main
 
     public static void main(String args[])
     {
-        new Thread()
+        new Background().setVisible(true);
+        for(int i=1;i!=30;i++)
         {
-            @Override
-            public void start()
+            new Flyer().setVisible(true);
+            try
             {
-                new Background().setVisible(true);
-                for(int i=1;i!=30;i++)
-                {
-                    new Flyer().setVisible(true);
-                    try
-                    {
-                        Thread.sleep(300);
-                    }catch(Throwable e){}
-                }
-            }
-        }.start();
+                Thread.sleep(300);
+            }catch(Throwable e){}
+        }
     }
 }
