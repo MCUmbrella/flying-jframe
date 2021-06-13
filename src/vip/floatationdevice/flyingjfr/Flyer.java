@@ -6,6 +6,7 @@ import javax.swing.Timer;
 
 import static vip.floatationdevice.flyingjfr.Main.MAX_X;
 import static vip.floatationdevice.flyingjfr.Main.MAX_Y;
+import static vip.floatationdevice.flyingjfr.Main.KL;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -14,8 +15,6 @@ import java.awt.image.BufferedImage;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.Random;
 
 public class Flyer extends JFrame
@@ -33,18 +32,19 @@ public class Flyer extends JFrame
     };
     final String imgurl=imgurls[new Random().nextInt(imgurls.length)];// Select one image
     final Image img=Toolkit.getDefaultToolkit().getImage(getClass().getResource(imgurl));// Load the image
-    int sizex, sizey; // Standard window size based on image size
+    int sizex=1, sizey=1; // Standard window size based on image size
     double sizemultiplier=0.01; // Window size multiplier
     int distance=0; // Distance from window to screen's center
-    double x, y; // Initial window location
+    double x=MAX_X/2, y=MAX_Y/2; // Window location
     double sx=new Random().nextDouble(), sy=new Random().nextDouble(); // Base X & Y movement speed
     double a=new Random().nextDouble()%0.03;// Acceleration
     
-    public void reset()
+    void reset()
     {
         sizemultiplier=0.01;
         x=MAX_X/2; y=MAX_Y/2;
         sx=new Random().nextDouble(); sy=new Random().nextDouble();
+        a=new Random().nextDouble()%0.03;
         if(new Random().nextBoolean())sx*=-1;if(new Random().nextBoolean())sy*=-1;
         setVisible(true);
     }
@@ -60,9 +60,6 @@ public class Flyer extends JFrame
         setUndecorated(true);
         setBackground(new Color(0f,0f,0f,0f));
         if(new Random().nextBoolean())sx*=-1;if(new Random().nextBoolean())sy*=-1;
-        setSize(sizex,sizey);
-        x=MAX_X/2;
-        y=MAX_Y/2;
         setLocation((int)x,(int)y);
         
         ActionListener taskPerformer=new ActionListener()
@@ -82,18 +79,8 @@ public class Flyer extends JFrame
         new Timer(25,taskPerformer).start(); // Start flying
     }
     
-    final static KeyListener KL=new KeyListener()
-    {
-        @Override
-        public void keyTyped(KeyEvent e){}
-        @Override
-        public void keyPressed(KeyEvent e){System.exit(0);}
-        @Override
-        public void keyReleased(KeyEvent e){}
-    };
-    
     @Override
-    public void paint(Graphics g) {
+    public void paint(Graphics g) {// Auto resize image
         g.drawImage(img, 0, 0, (int)(sizex*sizemultiplier), (int)(sizey*sizemultiplier), this);
     }
     
