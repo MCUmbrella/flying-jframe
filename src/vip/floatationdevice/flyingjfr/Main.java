@@ -6,7 +6,7 @@ public class Main
 {
     public static final int MAX_X=(int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
     public static final int MAX_Y=(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-
+    
     public static void main(String args[])
     {
         new Background().setVisible(true);
@@ -15,7 +15,7 @@ public class Main
             new Flyer().setVisible(true);
             try
             {
-                Thread.sleep(300);
+                Thread.sleep(400);
             }catch(Throwable e){}
         }
     }
