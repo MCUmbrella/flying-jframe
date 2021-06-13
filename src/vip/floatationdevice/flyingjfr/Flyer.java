@@ -42,7 +42,6 @@ public class Flyer extends JFrame
     
     public void reset()
     {
-        //sizex=100; sizey=100;
         sizemultiplier=0.01;
         x=MAX_X/2; y=MAX_Y/2;
         sx=new Random().nextDouble(); sy=new Random().nextDouble();
@@ -69,8 +68,8 @@ public class Flyer extends JFrame
         {
             public void actionPerformed(ActionEvent ev)
             {
-                sizemultiplier+=0.005;
-                if(x>MAX_X||y>MAX_Y||x<-sizex||y<-sizey){reset();} // Reset window location & size if it flew out of the screen
+                sizemultiplier=(0.01+Math.sqrt(Math.pow(MAX_X/2-x,2)+Math.pow(MAX_Y/2-y,2))*0.001)*(1+a*50); // The most confusing line ever
+                if(x>MAX_X||y>MAX_Y||x<-sizex*3||y<-sizey*3){reset();} // Reset window location & size if it flew out of the screen
                 x+=sx;y+=sy;
                 sx*=(a+1);
                 sy*=(a+1);
