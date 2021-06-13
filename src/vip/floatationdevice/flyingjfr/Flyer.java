@@ -58,6 +58,7 @@ public class Flyer extends JFrame
             sizey=b.getHeight();
         }catch(Throwable e){e.printStackTrace();System.exit(-1);}
         setUndecorated(true);
+        setBackground(new Color(0f,0f,0f,0f));
         if(new Random().nextBoolean())sx*=-1;if(new Random().nextBoolean())sy*=-1;
         setSize(sizex,sizey);
         x=MAX_X/2;
@@ -93,7 +94,7 @@ public class Flyer extends JFrame
     
     @Override
     public void paint(Graphics g) {
-        g.drawImage(img, 0, 0, (int)(sizex*sizemultiplier), (int)(sizey*sizemultiplier), Color.BLACK, this);
+        g.drawImage(img, 0, 0, (int)(sizex*sizemultiplier), (int)(sizey*sizemultiplier), this);
     }
     
 }
