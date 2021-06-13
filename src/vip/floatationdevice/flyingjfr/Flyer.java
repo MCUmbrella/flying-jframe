@@ -33,9 +33,9 @@ public class Flyer extends JFrame
     };
     final String imgurl=imgurls[new Random().nextInt(imgurls.length)];// Select one image
     final Image img=Toolkit.getDefaultToolkit().getImage(getClass().getResource(imgurl));// Load the image
-    //int sizex=124, sizey=104; // Initial window size
     int sizex, sizey; // Standard window size based on image size
-    int sizemultiplier=0; // Window size multiplier
+    double sizemultiplier=0.01; // Window size multiplier
+    int distance=0; // Distance from window to screen's center
     double x, y; // Initial window location
     double sx=new Random().nextDouble(), sy=new Random().nextDouble(); // Base X & Y movement speed
     double a=new Random().nextDouble()%0.03;// Acceleration
@@ -43,7 +43,8 @@ public class Flyer extends JFrame
     public void reset()
     {
         //sizex=100; sizey=100;
-        x=MAX_X/2-sizex; y=MAX_Y/2-sizey;
+        sizemultiplier=0.01;
+        x=MAX_X/2; y=MAX_Y/2;
         sx=new Random().nextDouble(); sy=new Random().nextDouble();
         if(new Random().nextBoolean())sx*=-1;if(new Random().nextBoolean())sy*=-1;
         setVisible(true);
@@ -57,22 +58,23 @@ public class Flyer extends JFrame
             sizex=b.getWidth();
             sizey=b.getHeight();
         }catch(Throwable e){e.printStackTrace();System.exit(-1);}
-        System.out.println(sizex+", "+sizey);
         setUndecorated(true);
         if(new Random().nextBoolean())sx*=-1;if(new Random().nextBoolean())sy*=-1;
         setSize(sizex,sizey);
-        x=(MAX_X-sizex)/2;
-        y=(MAX_Y-sizey)/2;
+        x=MAX_X/2;
+        y=MAX_Y/2;
         setLocation((int)x,(int)y);
         
         ActionListener taskPerformer=new ActionListener()
         {
             public void actionPerformed(ActionEvent ev)
             {
+                sizemultiplier+=0.005;
                 if(x>MAX_X||y>MAX_Y||x<-sizex||y<-sizey){reset();} // Reset window location & size if it flew out of the screen
                 x+=sx;y+=sy;
                 sx*=(a+1);
                 sy*=(a+1);
+                setSize((int)(sizex*sizemultiplier),(int)(sizey*sizemultiplier));
                 setLocation((int)x,(int)y);
             }
         };
@@ -92,7 +94,7 @@ public class Flyer extends JFrame
     
     @Override
     public void paint(Graphics g) {
-        g.drawImage(img, 0, 0, sizex, sizey, Color.BLACK, this);
+        g.drawImage(img, 0, 0, (int)(sizex*sizemultiplier), (int)(sizey*sizemultiplier), Color.BLACK, this);
     }
     
 }
