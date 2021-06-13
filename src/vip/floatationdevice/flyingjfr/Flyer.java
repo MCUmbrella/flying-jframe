@@ -33,10 +33,10 @@ public class Flyer extends JFrame
     };
     final String imgurl=imgurls[new Random().nextInt(imgurls.length)];// Select one image
     final Image img=Toolkit.getDefaultToolkit().getImage(getClass().getResource(imgurl));// Load the image
-    int sizex=124, sizey=104; // Initial window size
-    int sizexstd, sizeystd; // Standard window size based on image size
+    //int sizex=124, sizey=104; // Initial window size
+    int sizex, sizey; // Standard window size based on image size
     int sizemultiplier=0; // Window size multiplier
-    double x=MAX_X/2-sizex, y=MAX_Y/2-sizey; // Initial window location
+    double x, y; // Initial window location
     double sx=new Random().nextDouble(), sy=new Random().nextDouble(); // Base X & Y movement speed
     double a=new Random().nextDouble()%0.03;// Acceleration
     
@@ -54,13 +54,15 @@ public class Flyer extends JFrame
         try
         {
             BufferedImage b=ImageIO.read(getClass().getResource(imgurl));
-            sizexstd=b.getWidth();
-            sizeystd=b.getHeight();
+            sizex=b.getWidth();
+            sizey=b.getHeight();
         }catch(Throwable e){e.printStackTrace();System.exit(-1);}
-        System.out.println(sizexstd+", "+sizeystd);
+        System.out.println(sizex+", "+sizey);
         setUndecorated(true);
         if(new Random().nextBoolean())sx*=-1;if(new Random().nextBoolean())sy*=-1;
-        setSize(sizexstd,sizeystd);
+        setSize(sizex,sizey);
+        x=(MAX_X-sizex)/2;
+        y=(MAX_Y-sizey)/2;
         setLocation((int)x,(int)y);
         
         ActionListener taskPerformer=new ActionListener()
