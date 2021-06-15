@@ -33,6 +33,12 @@ public class Flyer extends JFrame
     void reset()
     {
         imgurl=IMG_URLS[new Random().nextInt(IMG_URLS.length)];
+        try
+        {
+            BufferedImage b=ImageIO.read(getClass().getResource(imgurl));
+            sizex=b.getWidth();
+            sizey=b.getHeight();
+        }catch(Throwable e){e.printStackTrace();System.exit(-1);}
         img=Toolkit.getDefaultToolkit().getImage(getClass().getResource(imgurl));
         sizemultiplier=0.01;
         x=MAX_X/2; y=MAX_Y/2;

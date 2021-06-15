@@ -1,8 +1,10 @@
 package vip.floatationdevice.flyingjfr;
 
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 public class Main
 {
@@ -18,6 +20,7 @@ public class Main
         "/resources/ico5.png",
         "/resources/ico6.png"
     };
+    public static ArrayList<Image> imgs=new ArrayList<Image>();
     public final static KeyListener KL=new KeyListener()
     {
         @Override
@@ -30,6 +33,7 @@ public class Main
     
     public static void main(String args[])
     {
+        for(int a=0;a!=IMG_URLS.length;a++){imgs.add(Toolkit.getDefaultToolkit().getImage(Main.class.getResource(IMG_URLS[a])));}
         new Background().setVisible(true);
         for(int i=0;i!=30;i++)
         {
