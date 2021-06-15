@@ -30,17 +30,19 @@ public class Flyer extends JFrame
         "/resources/ico5.png",
         "/resources/ico6.png"
     };
-    final String imgurl=imgurls[new Random().nextInt(imgurls.length)];// Select one image
-    final Image img=Toolkit.getDefaultToolkit().getImage(getClass().getResource(imgurl));// Load the image
+    String imgurl=imgurls[new Random().nextInt(imgurls.length)]; // Select one image
+    Image img=Toolkit.getDefaultToolkit().getImage(getClass().getResource(imgurl)); // Load the image
     int sizex=1, sizey=1; // Standard window size based on image size
     double sizemultiplier=0.01; // Window size multiplier
     int distance=0; // Distance from window to screen's center
     double x=MAX_X/2, y=MAX_Y/2; // Window location
     double sx=new Random().nextDouble(), sy=new Random().nextDouble(); // Base X & Y movement speed
-    double a=new Random().nextDouble()%0.03;// Acceleration
+    double a=new Random().nextDouble()%0.03; // Acceleration
     
     void reset()
     {
+        imgurl=imgurls[new Random().nextInt(imgurls.length)];
+        img=Toolkit.getDefaultToolkit().getImage(getClass().getResource(imgurl));
         sizemultiplier=0.01;
         x=MAX_X/2; y=MAX_Y/2;
         sx=new Random().nextDouble(); sy=new Random().nextDouble();
@@ -80,8 +82,8 @@ public class Flyer extends JFrame
     }
     
     @Override
-    public void paint(Graphics g) {// Auto resize image
-        g.drawImage(img, 0, 0, (int)(sizex*sizemultiplier), (int)(sizey*sizemultiplier), this);
+    public void paint(Graphics g)
+    {
+        g.drawImage(img,0,0,(int)(sizex*sizemultiplier),(int)(sizey*sizemultiplier),this);// Auto resize image
     }
-    
 }
