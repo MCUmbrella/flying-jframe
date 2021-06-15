@@ -23,9 +23,8 @@ public class Flyer extends JFrame
     private static final long serialVersionUID = 1L; // what
     int imgnum=new Random().nextInt(IMG_URLS.length); // Select one image
     Image img=imgs.get(imgnum); // Load the image
-    int sizex=1, sizey=1; // Standard window size based on image size
+    int sizex, sizey; // Standard window size based on image size
     double sizemultiplier=0.01; // Window size multiplier
-    int distance=0; // Distance from window to screen's center
     double x=MAX_X/2, y=MAX_Y/2; // Window location
     double sx=new Random().nextDouble(), sy=new Random().nextDouble(); // Base X & Y movement speed
     double a=new Random().nextDouble()%0.03; // Acceleration
