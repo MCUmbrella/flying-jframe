@@ -7,6 +7,7 @@ import javax.swing.Timer;
 import static vip.floatationdevice.flyingjfr.Main.MAX_X;
 import static vip.floatationdevice.flyingjfr.Main.MAX_Y;
 import static vip.floatationdevice.flyingjfr.Main.KL;
+import static vip.floatationdevice.flyingjfr.Main.IMG_URLS;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -20,17 +21,7 @@ import java.util.Random;
 public class Flyer extends JFrame
 {
     private static final long serialVersionUID = 1L; // what
-    final String imgurls[]=// Images used
-    {
-        "/resources/ico0.png",
-        "/resources/ico1.png",
-        "/resources/ico2.png",
-        "/resources/ico3.png",
-        "/resources/ico4.png",
-        "/resources/ico5.png",
-        "/resources/ico6.png"
-    };
-    String imgurl=imgurls[new Random().nextInt(imgurls.length)]; // Select one image
+    String imgurl=IMG_URLS[new Random().nextInt(IMG_URLS.length)]; // Select one image
     Image img=Toolkit.getDefaultToolkit().getImage(getClass().getResource(imgurl)); // Load the image
     int sizex=1, sizey=1; // Standard window size based on image size
     double sizemultiplier=0.01; // Window size multiplier
@@ -41,7 +32,7 @@ public class Flyer extends JFrame
     
     void reset()
     {
-        imgurl=imgurls[new Random().nextInt(imgurls.length)];
+        imgurl=IMG_URLS[new Random().nextInt(IMG_URLS.length)];
         img=Toolkit.getDefaultToolkit().getImage(getClass().getResource(imgurl));
         sizemultiplier=0.01;
         x=MAX_X/2; y=MAX_Y/2;
