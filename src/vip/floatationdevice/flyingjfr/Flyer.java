@@ -22,7 +22,6 @@ public class Flyer extends JFrame
 {
     private static final long serialVersionUID = 1L; // what
     int imgnum=new Random().nextInt(IMG_URLS.length); // Select one image
-    String imgurl=IMG_URLS[imgnum];
     Image img=imgs.get(imgnum); // Load the image
     int sizex=1, sizey=1; // Standard window size based on image size
     double sizemultiplier=0.01; // Window size multiplier
@@ -31,30 +30,11 @@ public class Flyer extends JFrame
     double sx=new Random().nextDouble(), sy=new Random().nextDouble(); // Base X & Y movement speed
     double a=new Random().nextDouble()%0.03; // Acceleration
     
-    void reset()
-    {
-        imgnum=new Random().nextInt(IMG_URLS.length);
-        imgurl=IMG_URLS[imgnum];
-        try
-        {
-            BufferedImage b=ImageIO.read(getClass().getResource(imgurl));
-            sizex=b.getWidth();
-            sizey=b.getHeight();
-        }catch(Throwable e){e.printStackTrace();System.exit(-1);}
-        img=imgs.get(imgnum);
-        sizemultiplier=0.01;
-        x=MAX_X/2; y=MAX_Y/2;
-        sx=new Random().nextDouble(); sy=new Random().nextDouble();
-        a=new Random().nextDouble()%0.03;
-        if(new Random().nextBoolean())sx*=-1;if(new Random().nextBoolean())sy*=-1;
-        setVisible(true);
-    }
-    
     Flyer()
     {
         try
         {
-            BufferedImage b=ImageIO.read(getClass().getResource(imgurl));
+            BufferedImage b=ImageIO.read(getClass().getResource(IMG_URLS[imgnum]));
             sizex=b.getWidth();
             sizey=b.getHeight();
         }catch(Throwable e){e.printStackTrace();System.exit(-1);}
@@ -80,9 +60,27 @@ public class Flyer extends JFrame
         new Timer(25,taskPerformer).start(); // Start flying
     }
     
+    void reset()
+    {// Put the window back in the screen's center & select a new image
+        imgnum=new Random().nextInt(IMG_URLS.length);
+        try
+        {
+            BufferedImage b=ImageIO.read(getClass().getResource(IMG_URLS[imgnum]));
+            sizex=b.getWidth();
+            sizey=b.getHeight();
+        }catch(Throwable e){e.printStackTrace();System.exit(-1);}
+        sizemultiplier=0.01;
+        x=MAX_X/2; y=MAX_Y/2;
+        img=imgs.get(imgnum);
+        sx=new Random().nextDouble(); sy=new Random().nextDouble();
+        a=new Random().nextDouble()%0.03;
+        if(new Random().nextBoolean())sx*=-1;if(new Random().nextBoolean())sy*=-1;
+        setVisible(true);
+    }
+    
     @Override
     public void paint(Graphics g)
-    {
-        g.drawImage(img,0,0,(int)(sizex*sizemultiplier),(int)(sizey*sizemultiplier),this);// Auto resize image
+    {// Auto resize image
+        g.drawImage(img,0,0,(int)(sizex*sizemultiplier),(int)(sizey*sizemultiplier),this);
     }
 }
