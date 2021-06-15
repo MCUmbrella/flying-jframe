@@ -10,6 +10,7 @@ public class Main
 {
     public static final int MAX_X=(int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
     public static final int MAX_Y=(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+    
     public static final String IMG_URLS[]=// Images used
     {
         "/resources/ico0.png",
@@ -21,6 +22,7 @@ public class Main
         "/resources/ico6.png"
     };
     public static ArrayList<Image> imgs=new ArrayList<Image>();
+    
     public final static KeyListener KL=new KeyListener()
     {
         @Override
@@ -31,6 +33,7 @@ public class Main
         public void keyReleased(KeyEvent e){}
     };
     
+    // Startup
     public static void main(String args[])
     {
         for(int a=0;a!=IMG_URLS.length;a++){imgs.add(Toolkit.getDefaultToolkit().getImage(Main.class.getResource(IMG_URLS[a])));}
@@ -43,5 +46,5 @@ public class Main
                 Thread.sleep(400);
             }catch(Throwable e){}
         }
-    }
+    }// End
 }
